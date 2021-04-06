@@ -25,7 +25,7 @@ def main(f, tl):
             for row in reader:
                 split_command = [
                     'ffmpeg', '-i', f,
-                    '-acodec', 'copy', '-ss', row[1], '-to', row[2], target_path+row[0].strip(' ')+'.mp3'
+                    '-acodec', 'copy', '-ss', row[1], '-to', row[2], target_path+row[0].strip(' ')
                 ]
                 print(*split_command)
                 subprocess.run(split_command, stdout=subprocess.PIPE, stdin=subprocess.PIPE)
