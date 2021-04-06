@@ -32,7 +32,16 @@ def main(f, tl):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) == 3:
-        main(sys.argv[1], sys.argv[2])
+    ffmpeg_is_installed = True
+    try:
+        print(subprocess.check_output(['which', 'ffmpeg']))
+    except Exception as e:
+        print(e, e.output)
+        ffmpeg_is_installed = False
+    if not ffmpeg_is_installed:
+        print('ffmpeg is needed to run this script. Please install it first, then re-run.')
     else:
-        print('Usage: %s file_to_split tracklist' % os.path.relpath(__file__))
+        if len(sys.argv) == 3:
+            main(sys.argv[1], sys.argv[2])
+        else:
+            print('Usage: %s file_to_split tracklist' % os.path.relpath(__file__))
